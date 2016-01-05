@@ -117,7 +117,7 @@ function finishedLoading(bufferList) {
 
   document.onkeypress = function(e) {
     e.preventDefault();
-    console.log(e.keyCode);
+    console.log(e.charCode);
     play(e.keyCode);
   };
 
