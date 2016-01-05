@@ -4,26 +4,34 @@
   <meta charset="UTF-8">
   <title>Soundboard</title>
 </head>
+<style>
+  p{
+    font-family: monospace;
+    margin: 0 0 .5em;
+    padding: .5em;
+    cursor: pointer;
+  }
+</style>
 <body>
 
-<pre>
-  1 - alarm
-  2 - bloody
-  3 - haha-villiams
-  4 - hello-mr-villiams
-  5 - i-need-some-money-immediately
-  6 - i-realize-that
-  7 - ok-sir
-  8 - post-all-the-letters
-  9 - sooo
-  0 - yes-im-not
 
-  -------------------------
+  <p data-keycode="49" class="clickable">1 - alarm</p>
+  <p data-keycode="50" class="clickable">2 - bloody</p>
+  <p data-keycode="51" class="clickable">3 - haha-villiams</p>
+  <p data-keycode="52" class="clickable">4 - hello-mr-villiams</p>
+  <p data-keycode="53" class="clickable">5 - i-need-some-money-immediately</p>
+  <p data-keycode="54" class="clickable">6 - i-realize-that</p>
+  <p data-keycode="55" class="clickable">7 - ok-sir</p>
+  <p data-keycode="56" class="clickable">8 - post-all-the-letters</p>
+  <p data-keycode="57" class="clickable">9 - sooo</p>
+  <p data-keycode="48" class="clickable">0 - yes-im-not</p>
 
-  q - Ouuuu
-  w - shhh ... silence
-  e - i'm not a fool
-</pre>
+  <p>-------------------------</p>
+
+  <p data-keycode="113" class="clickable">q - Ouuuu</p>
+  <p data-keycode="119" class="clickable">w - shhh ... silence</p>
+  <p data-keycode="101" class="clickable">e - i'm not a fool</p>
+
 <script src="js/bufferloader.js" charset="utf-8"></script>
 <script src="js/soundboard.js" charset="utf-8"></script>
 </body>
