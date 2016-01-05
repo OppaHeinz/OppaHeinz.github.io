@@ -118,7 +118,7 @@ function finishedLoading(bufferList) {
   document.onkeypress = function(e) {
     e.preventDefault();
     console.log(e.charCode);
-    play(e.keyCode);
+    play(e.charCode);
   };
 
   var clickTargets = document.getElementsByClassName('clickable');
