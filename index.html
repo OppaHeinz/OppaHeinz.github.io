@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta charset="UTF-8">
   <title>Soundboard</title>
+  <link rel="stylesheet" href="css/main.css" media="screen" charset="utf-8">
 </head>
 <style>
-  p{
-    font-family: monospace;
-    margin: 0 0 .5em;
-    padding: .5em;
-    cursor: pointer;
-  }
+
 </style>
 <body>
+<div class="flex-container">
 
+  <p data-keycode="49" class="clickable button"><span>1 - </span>alarm</p>
+  <p data-keycode="50" class="clickable button"><span>2 - </span>bloody</p>
+  <p data-keycode="51" class="clickable button"><span>3 - </span>haha villiams</p>
+  <p data-keycode="52" class="clickable button"><span>4 - </span>hello mr villiams</p>
+  <p data-keycode="53" class="clickable button"><span>5 - </span>i need some money immediately</p>
+  <p data-keycode="54" class="clickable button"><span>6 - </span>i realize that</p>
+  <p data-keycode="55" class="clickable button"><span>7 - </span>ok sir</p>
+  <p data-keycode="56" class="clickable button"><span>8 - </span>post all the letters</p>
+  <p data-keycode="57" class="clickable button"><span>9 - </span>sooo</p>
+  <p data-keycode="48" class="clickable button"><span>0 - </span>yes im not</p>
 
-  <p data-keycode="49" class="clickable">1 - alarm</p>
-  <p data-keycode="50" class="clickable">2 - bloody</p>
-  <p data-keycode="51" class="clickable">3 - haha-villiams</p>
-  <p data-keycode="52" class="clickable">4 - hello-mr-villiams</p>
-  <p data-keycode="53" class="clickable">5 - i-need-some-money-immediately</p>
-  <p data-keycode="54" class="clickable">6 - i-realize-that</p>
-  <p data-keycode="55" class="clickable">7 - ok-sir</p>
-  <p data-keycode="56" class="clickable">8 - post-all-the-letters</p>
-  <p data-keycode="57" class="clickable">9 - sooo</p>
-  <p data-keycode="48" class="clickable">0 - yes-im-not</p>
+  <p class="hide-mobile">-------------------------</p>
 
-  <p>-------------------------</p>
+  <p data-keycode="113" class="clickable button"><span>q - </span>Ouuuu</p>
+  <p data-keycode="119" class="clickable button"><span>w - </span>shhh ... silence</p>
+  <p data-keycode="101" class="clickable button"><span>e - </span>i'm not a fool</p>
 
-  <p data-keycode="113" class="clickable">q - Ouuuu</p>
-  <p data-keycode="119" class="clickable">w - shhh ... silence</p>
-  <p data-keycode="101" class="clickable">e - i'm not a fool</p>
-
+</div>
 <script src="js/bufferloader.js" charset="utf-8"></script>
 <script src="js/soundboard.js" charset="utf-8"></script>
 </body>
