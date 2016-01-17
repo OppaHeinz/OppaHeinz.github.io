@@ -3,7 +3,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-html, body {
+html,
+body {
   height: 100%; }
 
 body {
@@ -15,6 +16,14 @@ body {
   @media (max-width: 500px) {
     body {
       padding: 10px; } }
+
+#char {
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: -999px; }
 
 @media (max-width: 500px) {
   .flex-container {

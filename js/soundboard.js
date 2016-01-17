@@ -6,57 +6,57 @@ var bufferLoader;
 
 var mapping =
   [{
-    high: 161,
-    regular: 49,
-    low: 33,
+    high: '!',
+    regular: '1',
+    low: '¡',
   }, {
-    high: 8220,
-    regular: 50,
-    low: 34,
+    high: '"',
+    regular: '2',
+    low: '“',
   }, {
-    high: 182,
-    regular: 51,
-    low: 167,
+    high: '§',
+    regular: '3',
+    low: '¶',
   }, {
-    high: 162,
-    regular: 52,
-    low: 36,
+    high: '$',
+    regular: '4',
+    low: '¢',
   }, {
-    high: 91,
-    regular: 53,
-    low: 37,
+    high: '%',
+    regular: '5',
+    low: '[',
   }, {
-    high: 93,
-    regular: 54,
-    low: 38,
+    high: '&',
+    regular: '6',
+    low: ']',
   }, {
-    high: 124,
-    regular: 55,
-    low: 47,
+    high: '/',
+    regular: '7',
+    low: '|',
   }, {
-    high: 123,
-    regular: 56,
-    low: 40,
+    high: '(',
+    regular: '8',
+    low: '{',
   }, {
-    high: 125,
-    regular: 57,
-    low: 41,
+    high: ')',
+    regular: '9',
+    low: '}',
   }, {
-    high: 8800,
-    regular: 48,
-    low: 61,
+    high: '=',
+    regular: '0',
+    low: '≠',
   }, {
-    high: 171,
-    regular: 113,
-    low: 81,
+    high: 'Q',
+    regular: 'q',
+    low: '«',
   }, {
-    high: 8721,
-    regular: 119,
-    low: 87,
+    high: 'W',
+    regular: 'w',
+    low: '∑',
   }, {
-    high: 8364,
-    regular: 101,
-    low: 69,
+    high: 'E',
+    regular: 'e',
+    low: '€',
   },
 ];
 
@@ -89,7 +89,6 @@ function init() {
 }
 
 function finishedLoading(bufferList) {
-  // Create two sources and play them both together.
 
   function start(index, speed) {
     var source = context.createBufferSource();
@@ -115,10 +114,16 @@ function finishedLoading(bufferList) {
     });
   }
 
-  document.onkeypress = function(e) {
+  document.onkeydown = function(e) {
+    document.getElementById('char').value = '';
+    document.getElementById('char').focus();
+  };
+
+  document.onkeyup = function(e) {
     e.preventDefault();
-    console.log(e.charCode);
-    play(e.charCode);
+    var character = document.getElementById('char').value;
+    console.log(character);
+    play(character);
   };
 
   var clickTargets = document.getElementsByClassName('clickable');
@@ -126,7 +131,7 @@ function finishedLoading(bufferList) {
   for (var i = 0; i < clickTargets.length; i++) {
     clickTargets[i].addEventListener('click', function() {
       console.log(this.attributes['data-keycode'].value);
-      play(parseInt(this.attributes['data-keycode'].value));
+      play(this.attributes['data-keycode'].value);
     });
   }
 
