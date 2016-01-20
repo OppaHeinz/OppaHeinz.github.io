@@ -31,26 +31,52 @@ body {
     flex-wrap: wrap; } }
 
 .button {
+  z-index: 20;
   margin: 0;
   padding: 0;
-  cursor: pointer; }
+  cursor: pointer;
+  position: relative; }
   @media (max-width: 500px) {
     .button {
-      border-radius: 3px;
-      border: 1px solid #CCC;
-      box-shadow: 0 1px 1px #CCC;
+      background: #666;
+      color: #DDD;
       display: block;
       flex-grow: 1;
       font-family: sans-serif;
-      font-size: .8em;
-      font-weight: 200;
-      margin: 5px;
-      min-height: 50px;
+      font-size: 1em;
+      font-weight: 100;
+      margin: 5px 5px;
+      min-height: 30px;
       padding: 15px;
-      text-align: center; } }
+      text-align: center;
+      transition: all .2s ease-out; } }
   @media (max-width: 500px) {
     .button span {
       display: none; } }
+
+.fast, .slow {
+  z-index: -1;
+  font-size: .8em;
+  text-align: center;
+  opacity: 0;
+  display: block !important;
+  position: absolute;
+  background: #888;
+  color: #EEE;
+  width: 100%;
+  height: 20px;
+  padding: 4px 0;
+  left: 0;
+  line-height: 1em;
+  top: -20px;
+  transition: all .2s ease-out;
+  transform: scaleY(0);
+  transform-origin: 100% 100%; }
+
+.slow {
+  top: auto;
+  bottom: -20px;
+  transform-origin: 0% 0%; }
 
 @media (max-width: 660px) {
   .hide-mobile {

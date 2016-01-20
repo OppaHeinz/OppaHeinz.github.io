@@ -3,6 +3,8 @@ window.onload = init;
 
 var context;
 var bufferLoader;
+var elm = {};
+var offsetElm;
 
 var mapping =
   [{
@@ -60,6 +62,8 @@ var mapping =
   },
 ];
 
+var iId;
+
 function init() {
 
   // Fix up prefixing
@@ -114,6 +118,22 @@ function finishedLoading(bufferList) {
     });
   }
 
+  function playMobile(keyCode, speed) {
+
+    mapping.map(function(value, key) {
+
+      if (keyCode === value.regular) {
+        if (speed === 'slow') {
+          start(key, 0.8);
+        }else if (speed === 'fast') {
+          start(key, 1.2);
+        }else {
+          start(key, 1);
+        }
+      }
+    });
+  }
+
   document.onkeydown = function(e) {
     document.getElementById('char').value = '';
     document.getElementById('char').focus();
@@ -130,8 +150,60 @@ function finishedLoading(bufferList) {
 
   for (var i = 0; i < clickTargets.length; i++) {
     clickTargets[i].addEventListener('click', function() {
-      console.log(this.attributes['data-keycode'].value);
       play(this.attributes['data-keycode'].value);
+    });
+
+    clickTargets[i].addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      console.log(e);
+      offset = e.touches[0].clientY;
+      elm = this;
+    });
+
+    clickTargets[i].addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      offsetElm = e.touches[0].clientY - offset;
+      if (offsetElm >= 0) {
+        elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
+        elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(0); opacity: 0');
+        if (offsetElm <= 30) {
+          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 50 * offsetElm / 30 + 'deg);');
+          elm.children[2].setAttribute('style', 'transition: none; transform: scaleY(' + offsetElm / 30 + '); opacity:' + 100 / 30 * offsetElm / 100) + ';';
+        }else {
+          elm.setAttribute('style', 'transition: none; transform: rotateX(50deg);');
+          elm.children[2].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
+        }
+      }else {
+        elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
+        elm.children[2].setAttribute('style', 'transition: none; transform: translateY(0); opacity: 0');
+        if (offsetElm >= -30) {
+          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 50 * offsetElm / 30 + 'deg);');
+          elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(' + -offsetElm / 30 + '); opacity:' + 100 / 30 * -offsetElm / 100) + ';';
+        }else {
+          elm.setAttribute('style', 'transition: none; transform: rotateX(50deg);');
+          elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
+        }
+      }
+
+      console.log(offsetElm);
+    });
+
+    clickTargets[i].addEventListener('touchend', function(e) {
+      e.preventDefault();
+      elm.children[1].setAttribute('style', '');
+      elm.children[2].setAttribute('style', '');
+      elm.setAttribute('style', '');
+      console.log(offsetElm);
+
+      if (offsetElm > 30) {
+        playMobile(elm.attributes['data-keycode'].value, 'slow');
+      } else if (offsetElm < -30) {
+        playMobile(elm.attributes['data-keycode'].value, 'fast');
+      } else {
+        playMobile(elm.attributes['data-keycode'].value);
+      }
+
+      offsetElm = 0;
     });
   }
 
