@@ -167,20 +167,20 @@ function finishedLoading(bufferList) {
         elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
         elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(0); opacity: 0');
         if (offsetElm <= 30) {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 50 * offsetElm / 30 + 'deg);');
+          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);');
           elm.children[2].setAttribute('style', 'transition: none; transform: scaleY(' + offsetElm / 30 + '); opacity:' + 100 / 30 * offsetElm / 100) + ';';
         }else {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(50deg);');
+          elm.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(-10px);');
           elm.children[2].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
         }
       }else {
         elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
         elm.children[2].setAttribute('style', 'transition: none; transform: translateY(0); opacity: 0');
         if (offsetElm >= -30) {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 50 * offsetElm / 30 + 'deg);');
+          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);;');
           elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(' + -offsetElm / 30 + '); opacity:' + 100 / 30 * -offsetElm / 100) + ';';
         }else {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(50deg);');
+          elm.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(10px);');
           elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
         }
       }
