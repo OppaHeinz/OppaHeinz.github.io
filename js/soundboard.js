@@ -145,15 +145,17 @@ function finishedLoading(bufferList) {
   for (var i = 0; i < clickTargets.length; i++) {
 
     clickTargets[i].addEventListener('touchstart', function(e) {
+
       e.preventDefault();
       console.log(e);
       offset = e.touches[0].clientY;
       elm = this;
+      elm.setAttribute('style', '');
     });
 
     clickTargets[i].addEventListener('touchmove', function(e) {
       e.preventDefault();
-      offsetElm = e.touches[0].clientY - offset;
+      offsetElm = (e.touches[0].clientY - offset) / 3;
       if (offsetElm >= 0) {
         elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
         elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(0); opacity: 0');
@@ -168,7 +170,7 @@ function finishedLoading(bufferList) {
         elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
         elm.children[2].setAttribute('style', 'transition: none; transform: translateY(0); opacity: 0');
         if (offsetElm >= -30) {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);;');
+          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);');
           elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(' + -offsetElm / 30 + '); opacity:' + 100 / 30 * -offsetElm / 100) + ';';
         }else {
           elm.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(10px);');
@@ -183,7 +185,7 @@ function finishedLoading(bufferList) {
       e.preventDefault();
       elm.children[1].setAttribute('style', '');
       elm.children[2].setAttribute('style', '');
-      elm.setAttribute('style', '');
+      elm.setAttribute('style', 'animation: highlight .3s');
       console.log(offsetElm);
       if (offsetElm < -30) {
         offsetElm = -30;

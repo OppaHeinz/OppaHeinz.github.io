@@ -98,6 +98,15 @@ body {
   transform-origin: 0% 0%;
 }
 
+@keyframes highlight{
+  0%{
+    background-color:#999;
+  }
+  100%{
+    background-color:#666;
+  }
+}
+
 .hide-mobile {
   @media (max-width: 660px) {
     display: none;

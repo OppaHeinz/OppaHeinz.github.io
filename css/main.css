@@ -78,6 +78,11 @@ body {
   bottom: -20px;
   transform-origin: 0% 0%; }
 
+@keyframes highlight {
+  0% {
+    background-color: #999; }
+  100% {
+    background-color: #666; } }
 @media (max-width: 660px) {
   .hide-mobile {
     display: none; } }
