@@ -4,7 +4,7 @@ window.onload = init;
 var context;
 var bufferLoader;
 var elm = {};
-var offsetElm;
+var offsetElm = 0;
 
 var mapping =
   [{
@@ -123,13 +123,7 @@ function finishedLoading(bufferList) {
     mapping.map(function(value, key) {
 
       if (keyCode === value.regular) {
-        if (speed === 'slow') {
-          start(key, 0.8);
-        }else if (speed === 'fast') {
-          start(key, 1.2);
-        }else {
-          start(key, 1);
-        }
+        start(key, speed);
       }
     });
   }
@@ -149,9 +143,6 @@ function finishedLoading(bufferList) {
   var clickTargets = document.getElementsByClassName('clickable');
 
   for (var i = 0; i < clickTargets.length; i++) {
-    clickTargets[i].addEventListener('click', function() {
-      play(this.attributes['data-keycode'].value);
-    });
 
     clickTargets[i].addEventListener('touchstart', function(e) {
       e.preventDefault();
@@ -194,14 +185,23 @@ function finishedLoading(bufferList) {
       elm.children[2].setAttribute('style', '');
       elm.setAttribute('style', '');
       console.log(offsetElm);
-
-      if (offsetElm > 30) {
-        playMobile(elm.attributes['data-keycode'].value, 'slow');
-      } else if (offsetElm < -30) {
-        playMobile(elm.attributes['data-keycode'].value, 'fast');
-      } else {
-        playMobile(elm.attributes['data-keycode'].value);
+      if (offsetElm < -30) {
+        offsetElm = -30;
+      }else if (offsetElm > 30) {
+        offsetElm = 30;
+      }else {
+        offsetElm = offsetElm;
       }
+
+      if (offsetElm > 0) {
+        offsetElm = offsetElm / 2;
+      }
+
+      var speed = 1 + -(offsetElm / 30);
+
+      console.log(speed);
+
+      playMobile(elm.attributes['data-keycode'].value, speed);
 
       offsetElm = 0;
     });
