@@ -3,73 +3,68 @@ window.onload = init;
 
 var context;
 var bufferLoader;
-var elm = {};
+var _this = {};
 var offsetElm = 0;
 
-var mapping =
-  [{
-    high: '!',
-    regular: '1',
-    low: '¡',
-  }, {
-    high: '"',
-    regular: '2',
-    low: '“',
-  }, {
-    high: '§',
-    regular: '3',
-    low: '¶',
-  }, {
-    high: '$',
-    regular: '4',
-    low: '¢',
-  }, {
-    high: '%',
-    regular: '5',
-    low: '[',
-  }, {
-    high: '&',
-    regular: '6',
-    low: ']',
-  }, {
-    high: '/',
-    regular: '7',
-    low: '|',
-  }, {
-    high: '(',
-    regular: '8',
-    low: '{',
-  }, {
-    high: ')',
-    regular: '9',
-    low: '}',
-  }, {
-    high: '=',
-    regular: '0',
-    low: '≠',
-  }, {
-    high: 'Q',
-    regular: 'q',
-    low: '«',
-  }, {
-    high: 'W',
-    regular: 'w',
-    low: '∑',
-  }, {
-    high: 'E',
-    regular: 'e',
-    low: '€',
-  },
-];
-
-var iId;
+var mapping = [{
+  high: '!',
+  regular: '1',
+  low: '¡',
+}, {
+  high: '"',
+  regular: '2',
+  low: '“',
+}, {
+  high: '§',
+  regular: '3',
+  low: '¶',
+}, {
+  high: '$',
+  regular: '4',
+  low: '¢',
+}, {
+  high: '%',
+  regular: '5',
+  low: '[',
+}, {
+  high: '&',
+  regular: '6',
+  low: ']',
+}, {
+  high: '/',
+  regular: '7',
+  low: '|',
+}, {
+  high: '(',
+  regular: '8',
+  low: '{',
+}, {
+  high: ')',
+  regular: '9',
+  low: '}',
+}, {
+  high: '=',
+  regular: '0',
+  low: '≠',
+}, {
+  high: 'Q',
+  regular: 'q',
+  low: '«',
+}, {
+  high: 'W',
+  regular: 'w',
+  low: '∑',
+}, {
+  high: 'E',
+  regular: 'e',
+  low: '€',
+},];
 
 function init() {
 
   // Fix up prefixing
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   context = new AudioContext();
-  1;
   bufferLoader = new BufferLoader(
     context, [
       'sounds/alarm.mp3',
@@ -88,11 +83,12 @@ function init() {
     ],
     finishedLoading
   );
-
   bufferLoader.load();
+
 }
 
 function finishedLoading(bufferList) {
+  console.log('finished');
 
   function start(index, speed) {
     var source = context.createBufferSource();
@@ -103,7 +99,7 @@ function finishedLoading(bufferList) {
   }
 
   function play(keyCode) {
-    mapping.map(function(value, key) {
+    mapping.map(function (value, key) {
       if (keyCode === value.high) {
         start(key, 1.2);
       }
@@ -120,7 +116,7 @@ function finishedLoading(bufferList) {
 
   function playMobile(keyCode, speed) {
 
-    mapping.map(function(value, key) {
+    mapping.map(function (value, key) {
 
       if (keyCode === value.regular) {
         start(key, speed);
@@ -128,12 +124,12 @@ function finishedLoading(bufferList) {
     });
   }
 
-  document.onkeydown = function(e) {
+  document.onkeydown = function (e) {
     document.getElementById('char').value = '';
     document.getElementById('char').focus();
   };
 
-  document.onkeyup = function(e) {
+  document.onkeyup = function (e) {
     e.preventDefault();
     var character = document.getElementById('char').value;
     console.log(character);
@@ -144,54 +140,49 @@ function finishedLoading(bufferList) {
 
   for (var i = 0; i < clickTargets.length; i++) {
 
-    clickTargets[i].addEventListener('touchstart', function(e) {
-
+    clickTargets[i].addEventListener('touchstart', function (e) {
       e.preventDefault();
-      console.log(e);
       offset = e.touches[0].clientY;
-      elm = this;
-      elm.setAttribute('style', '');
+      _this = this;
+      _this.setAttribute('style', '');
     });
 
-    clickTargets[i].addEventListener('touchmove', function(e) {
+    clickTargets[i].addEventListener('touchmove', function (e) {
       e.preventDefault();
       offsetElm = (e.touches[0].clientY - offset) / 3;
       if (offsetElm >= 0) {
-        elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
-        elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(0); opacity: 0');
+        _this.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
+        _this.children[1].setAttribute('style', 'transition: none; transform: scaleY(0); opacity: 0');
         if (offsetElm <= 30) {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);');
-          elm.children[2].setAttribute('style', 'transition: none; transform: scaleY(' + offsetElm / 30 + '); opacity:' + 100 / 30 * offsetElm / 100) + ';';
-        }else {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(-10px);');
-          elm.children[2].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
+          _this.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);');
+          _this.children[2].setAttribute('style', 'transition: none; transform: scaleY(' + offsetElm / 30 + '); opacity:' + 100 / 30 * offsetElm / 100) + ';';
+        } else {
+          _this.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(-10px);');
+          _this.children[2].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
         }
-      }else {
-        elm.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
-        elm.children[2].setAttribute('style', 'transition: none; transform: translateY(0); opacity: 0');
+      } else {
+        _this.setAttribute('style', 'transition: none; transform: rotateX(0deg);');
+        _this.children[2].setAttribute('style', 'transition: none; transform: translateY(0); opacity: 0');
         if (offsetElm >= -30) {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);');
-          elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(' + -offsetElm / 30 + '); opacity:' + 100 / 30 * -offsetElm / 100) + ';';
-        }else {
-          elm.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(10px);');
-          elm.children[1].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
+          _this.setAttribute('style', 'transition: none; transform: rotateX(' + 45 * offsetElm / 30 + 'deg) translateY(' + -offsetElm / 3 + 'px);');
+          _this.children[1].setAttribute('style', 'transition: none; transform: scaleY(' + -offsetElm / 30 + '); opacity:' + 100 / 30 * -offsetElm / 100) + ';';
+        } else {
+          _this.setAttribute('style', 'transition: none; transform: rotateX(45deg) translateY(10px);');
+          _this.children[1].setAttribute('style', 'transition: none; transform: scaleY(1); opacity: 1');
         }
       }
-
-      console.log(offsetElm);
     });
 
-    clickTargets[i].addEventListener('touchend', function(e) {
+    clickTargets[i].addEventListener('touchend', function (e) {
       e.preventDefault();
-      elm.children[1].setAttribute('style', '');
-      elm.children[2].setAttribute('style', '');
-      elm.setAttribute('style', 'animation: highlight .3s');
-      console.log(offsetElm);
+      _this.children[1].setAttribute('style', '');
+      _this.children[2].setAttribute('style', '');
+      _this.setAttribute('style', 'animation: highlight .3s');
       if (offsetElm < -30) {
         offsetElm = -30;
-      }else if (offsetElm > 30) {
+      } else if (offsetElm > 30) {
         offsetElm = 30;
-      }else {
+      } else {
         offsetElm = offsetElm;
       }
 
@@ -200,11 +191,7 @@ function finishedLoading(bufferList) {
       }
 
       var speed = 1 + -(offsetElm / 30);
-
-      console.log(speed);
-
-      playMobile(elm.attributes['data-keycode'].value, speed);
-
+      playMobile(_this.attributes['data-keycode'].value, speed);
       offsetElm = 0;
     });
   }
