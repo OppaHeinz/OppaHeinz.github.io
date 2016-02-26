@@ -1,0 +1,336 @@
+$button-active-background-color: rgb(134, 175, 124);
+$viewport-small: "max-width: 480px";
+$background-color: rgb(65, 66, 77);
+
+* {
+  box-sizing: border-box;
+  font-family: system, -apple-system, "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  font-size: 1rem;
+  transition: all .2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: $background-color;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 250px .5em 2em;
+  @media screen and ($viewport-small){
+   padding-top: 170px;
+  }
+}
+
+input,
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 3px;
+  border: none;
+  color: rgb(56, 62, 55);
+  font-size: 1.2em;
+  height: 50px;
+  vertical-align: top;
+  width: 100%;
+}
+
+input {
+  background: #ebeef4;
+  border-radius: 3px 3px 0 0;
+  display: block;
+  margin: 0 120px 0 0;
+  padding: 10px;
+  @media screen and ($viewport-small){
+    font-size: 1em;
+    line-height: 1.5em;
+    height: 35px;
+    margin: 0 60px 0 0;
+  }
+}
+
+button {
+  background-color: #0b759a;
+  border: none;
+  color: #ccd5d9;
+  cursor: pointer;
+  display: block;
+  font-size: 1.6em;
+  line-height: 2rem;
+  margin-top: 1em;
+  padding: 0;
+  opacity: .6;
+
+  &:hover{
+    opacity: 1;
+  }
+
+  &:before{
+    content: '';
+    display: inline-block;
+    margin-right: -21px;
+    margin-bottom: -6px;
+    border-radius: 100%;
+    border: 2px solid #ccd5d9;
+    height: 22px;
+    width: 22px;
+  }
+
+  &:after{
+    vertical-align: middle;
+    margin: 0 0 0 2em;
+    content: 'add task';
+    letter-spacing: .3rem;
+    text-transform: uppercase;
+    font-size: .8rem;
+    line-height: 2rem;
+    display: inline-block;
+  }
+
+}
+
+.task-item {
+  position: relative;
+}
+
+.item {
+  border-radius: 3px;
+  margin-right: 120px;
+  overflow: hidden;
+
+
+
+  button {
+    border-radius: 0;
+    cursor: pointer;
+    display: block;
+    font-size: 1.7em;
+    height: 100%;
+    line-height: 1rem;
+    margin: 0 0 1em;
+    opacity: 1;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: 0 0;
+    width: 120px;
+    background: #7a7e83;
+
+    &:after{
+      display: none;
+      content: none;
+    }
+
+    &:before{
+      display: none;
+      content: none;
+    }
+
+    &:hover, &:focus {
+      background-color: $button-active-background-color;
+    }
+
+    @media screen and ($viewport-small){
+      width: 60px;
+    }
+
+    span {
+      display: block;
+      font-size: .9rem;
+      line-height: 30px;
+      padding: 0;
+      transition: background-color .2s;
+      width: auto;
+
+      &:after {
+        content: 'start task';
+        @media screen and ($viewport-small){
+         content: none;
+        }
+      }
+
+    }
+  }
+
+  &.active {
+    animation: wiggle .5s;
+    box-shadow: 0 10px 40px rgba(0,0,0,.15);
+
+    button {
+      background-color: $button-active-background-color;
+      box-shadow: 0 0 20px -3px $button-active-background-color;
+      color: #fff;
+      cursor: auto;
+
+      span:after {
+        content: 'task running';
+        @media screen and ($viewport-small){
+         content: none;
+        }
+      }
+    }
+  }
+}
+
+input:invalid{
+  outline: 2px solid red;
+}
+
+input:invalid + div{
+  margin-right: 0;
+   + button {
+     box-shadow: none !important;
+     transform: translateX(120px);
+     visibility: hidden;
+  }
+
+}
+
+.item {
+  margin: 0 0 .4em;
+  opacity: .5;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.time {
+  background: #525962;
+  clear: both;
+  color: #eee;
+  display: block;
+  font-weight: 200;
+  letter-spacing: .3em;
+  line-height: 1rem;
+  margin-right: 120px;
+  padding: 1em 0;
+  text-align: center;
+  border-top: 1px solid darken(#525962, 10%);
+
+  @media screen and ($viewport-small){
+    padding: .5em 0;
+    margin-right: 60px;
+  }
+
+  span {
+    font-size: 2em;
+    padding: .7em 0;
+    @media screen and ($viewport-small){
+      font-size: 1em;
+    }
+  }
+
+
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translate(0, -4px);
+  }
+
+  25% {
+    transform: translate(0, 3px);
+  }
+
+  50% {
+    transform: translate(0, -2px);
+  }
+
+  75% {
+    transform: translate(0, 1px);
+  }
+
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+
+//// SVG
+$radius: 75;
+$radius-small: 60;
+$offset: $radius * 3.14159265359 * 2;
+$offset-small: $radius-small * 3.14159265359 * 2;
+
+
+.time-overview{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  z-index: 3;
+  background-color: $background-color;
+  box-shadow: 0 0 5px 5px $background-color;
+  @media screen and ($viewport-small){
+    max-height: 160px;
+  }
+}
+
+#progress {
+  position: relative;
+  overflow: hidden;
+  @media screen and ($viewport-small){
+    transform: scale(.8) translateY(-20px);
+  }
+}
+
+.current-total-progress-time {
+  color: rgb(164, 195, 129);
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  top: 110px;
+  @media screen and ($viewport-small){
+   top: 90px;
+  }
+}
+
+svg {
+  pointer-events: none;
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 240px;
+  fill: transparent;
+  @media screen and ($viewport-small){
+   height: 200px;
+  }
+}
+
+#c1 {
+  stroke: rgba(#0b759a, 0.25);
+  stroke-width: 10;
+  r: $radius;
+  stroke-dasharray: $offset;
+}
+
+#c2 {
+  stroke: rgb(212, 230, 161);
+  stroke-width: 10;
+  r: $radius;
+  stroke-dasharray: 0, $offset;
+}
+
+#c3 {
+  stroke: rgb(164, 195, 129);
+  stroke-width: 10;
+  r: $radius-small;
+  transform-origin: center center;
+  stroke-dasharray: 0, $offset-small;
+}
