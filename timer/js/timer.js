@@ -1,3 +1,5 @@
+(function () {
+
 var tasks = [];
 var totalTasks = 0;
 var interval = 0;
@@ -221,3 +223,5 @@ $(document).on('keyup', function (e) {
     }
   }
 });
+
+})();
