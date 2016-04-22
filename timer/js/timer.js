@@ -167,6 +167,13 @@ $('#timer').on('submit', 'form', function (e) {
   $(this).find('input').blur();
 });
 
+window.addEventListener('beforeunload', function (e) {
+  var confirmationMessage = 'You have a timer running do you really want to leave the page?';
+
+  e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+  return confirmationMessage;              // Gecko, WebKit, Chrome <34
+});
+
 $(document).on('keyup', function (e) {
   e.preventDefault();
   if ((e.keyCode === 187 || e.keyCode === 107)  && $('input:focus').length === 0) {
