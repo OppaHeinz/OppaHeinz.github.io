@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   font-family: system, -apple-system, "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
@@ -61,52 +62,53 @@ button {
   opacity: .6; }
   button:hover {
     opacity: 1; }
-  button:before {
-    position: absolute;
-    top: 8px;
-    left: 13px;
-    content: '';
-    display: inline-block;
-    border-radius: 100%;
-    border: 1px solid #ccd5d9;
-    height: 22px;
-    width: 22px; }
-  button:after {
-    vertical-align: middle;
-    margin: 0 0 0 1.3em;
-    content: 'add task';
-    letter-spacing: .1rem;
-    text-transform: uppercase;
-    font-size: .8rem;
-    line-height: 40px;
-    display: inline-block; }
   button.reset {
+    border-radius: 100%;
+    font-size: 1.9em;
     height: 40px;
-    line-height: 30px;
-    font-size: 1em;
-    margin: 0;
-    padding: 0 10px 0 10px;
-    position: fixed;
     right: 10px;
-    top: 10px;
-    width: auto;
-    z-index: 10; }
-    button.reset:before {
-      display: none; }
-    button.reset:after {
-      margin: 0;
-      content: 'reset'; }
-  button.add {
-    height: 40px;
-    line-height: 30px;
-    font-size: 1em;
+    line-height: 0;
     margin: 0;
-    padding: 0 10px 0 20px;
+    padding: 0;
     position: fixed;
-    left: 10px;
+    text-align: center;
     top: 10px;
-    width: auto;
+    vertical-align: middle;
+    vertical-align: text-top;
+    width: 40px;
     z-index: 10; }
+    button.reset:after {
+      content: '↻';
+      text-align: center;
+      display: block;
+      font-size: .8rem;
+      line-height: 40px;
+      font-size: 1em;
+      margin-top: 0; }
+  button.add {
+    border-radius: 100%;
+    font-size: 1.9em;
+    height: 40px;
+    left: 10px;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    text-align: center;
+    top: 10px;
+    vertical-align: middle;
+    vertical-align: text-top;
+    width: 40px;
+    z-index: 10; }
+    button.add:after {
+      content: '+';
+      text-align: center;
+      display: block;
+      font-size: .8rem;
+      line-height: 40px;
+      font-size: 1em;
+      margin-top: -6px;
+      text-transform: uppercase; }
 
 .task-item {
   position: relative; }
