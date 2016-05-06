@@ -2,7 +2,6 @@
   box-sizing: border-box;
   font-family: system, -apple-system, "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
   font-size: 1rem;
-  -webkit-transition: all .2s;
   transition: all .2s;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -63,23 +62,51 @@ button {
   button:hover {
     opacity: 1; }
   button:before {
+    position: absolute;
+    top: 8px;
+    left: 13px;
     content: '';
     display: inline-block;
-    margin-right: -21px;
-    margin-bottom: -6px;
     border-radius: 100%;
-    border: 2px solid #ccd5d9;
+    border: 1px solid #ccd5d9;
     height: 22px;
     width: 22px; }
   button:after {
     vertical-align: middle;
-    margin: 0 0 0 2em;
+    margin: 0 0 0 1.3em;
     content: 'add task';
-    letter-spacing: .3rem;
+    letter-spacing: .1rem;
     text-transform: uppercase;
     font-size: .8rem;
-    line-height: 2rem;
+    line-height: 40px;
     display: inline-block; }
+  button.reset {
+    height: 40px;
+    line-height: 30px;
+    font-size: 1em;
+    margin: 0;
+    padding: 0 10px 0 10px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: auto;
+    z-index: 10; }
+    button.reset:before {
+      display: none; }
+    button.reset:after {
+      margin: 0;
+      content: 'reset'; }
+  button.add {
+    height: 40px;
+    line-height: 30px;
+    font-size: 1em;
+    margin: 0;
+    padding: 0 10px 0 20px;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    width: auto;
+    z-index: 10; }
 
 .task-item {
   position: relative; }
@@ -103,8 +130,7 @@ button {
     position: absolute;
     right: 0;
     top: 0;
-    -webkit-transform-origin: 0 0;
-            transform-origin: 0 0;
+    transform-origin: 0 0;
     width: 120px;
     background: #7a7e83; }
     .item button:after {
@@ -123,7 +149,6 @@ button {
       font-size: .9rem;
       line-height: 30px;
       padding: 0;
-      -webkit-transition: background-color .2s;
       transition: background-color .2s;
       width: auto; }
       .item button span:after {
@@ -132,8 +157,7 @@ button {
           .item button span:after {
             content: none; } }
   .item.active {
-    -webkit-animation: wiggle .5s;
-            animation: wiggle .5s;
+    animation: wiggle .5s;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); }
     .item.active button {
       background-color: #86af7c;
@@ -153,8 +177,7 @@ input:invalid + div {
   margin-right: 0; }
   input:invalid + div + button {
     box-shadow: none !important;
-    -webkit-transform: translateX(120px);
-            transform: translateX(120px);
+    transform: translateX(120px);
     visibility: hidden; }
 
 .item {
@@ -186,39 +209,17 @@ input:invalid + div {
       .time span {
         font-size: 1em; } }
 
-@-webkit-keyframes wiggle {
-  0% {
-    -webkit-transform: translate(0, -4px);
-            transform: translate(0, -4px); }
-  25% {
-    -webkit-transform: translate(0, 3px);
-            transform: translate(0, 3px); }
-  50% {
-    -webkit-transform: translate(0, -2px);
-            transform: translate(0, -2px); }
-  75% {
-    -webkit-transform: translate(0, 1px);
-            transform: translate(0, 1px); }
-  100% {
-    -webkit-transform: translate(0, 0px);
-            transform: translate(0, 0px); } }
-
 @keyframes wiggle {
   0% {
-    -webkit-transform: translate(0, -4px);
-            transform: translate(0, -4px); }
+    transform: translate(0, -4px); }
   25% {
-    -webkit-transform: translate(0, 3px);
-            transform: translate(0, 3px); }
+    transform: translate(0, 3px); }
   50% {
-    -webkit-transform: translate(0, -2px);
-            transform: translate(0, -2px); }
+    transform: translate(0, -2px); }
   75% {
-    -webkit-transform: translate(0, 1px);
-            transform: translate(0, 1px); }
+    transform: translate(0, 1px); }
   100% {
-    -webkit-transform: translate(0, 0px);
-            transform: translate(0, 0px); } }
+    transform: translate(0, 0px); } }
 .time-overview {
   position: fixed;
   top: 0;
@@ -236,8 +237,7 @@ input:invalid + div {
   overflow: hidden; }
   @media screen and (max-width: 480px) {
     #progress {
-      -webkit-transform: scale(0.8) translateY(-20px);
-              transform: scale(0.8) translateY(-20px); } }
+      transform: scale(0.8) translateY(-20px); } }
 
 .current-total-progress-time {
   color: #a4c381;
@@ -255,8 +255,7 @@ input:invalid + div {
 
 svg {
   pointer-events: none;
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
+  transform: rotate(-90deg);
   width: 100%;
   height: 240px;
   fill: transparent; }
@@ -280,6 +279,5 @@ svg {
   stroke: #a4c381;
   stroke-width: 10;
   r: 60;
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
+  transform-origin: center center;
   stroke-dasharray: 0, 376.9911184308; }

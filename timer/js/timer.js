@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
 
 var tasks = [];
 var totalTasks = 0;
@@ -9,6 +9,9 @@ var totalTime = 0;
 var maxTime = 60 * 60 *  8;
 var startTime;
 var currentTime;
+var $reset = $('#reset');
+var $timer = $('#timer');
+var $add = $('#add');
 
 // Helper
 
@@ -146,25 +149,44 @@ var init = function () {
   tasks[totalTasks] = new Task();
 };
 
+var reset = function () {
+  currentTime = 0;
+  totalTime = 0;
+  totalTasks = 0;
+  tasks = [];
+  $('#timer .item').remove();
+  $('circle').removeAttr('style');
+  $('.current-total-progress-time').text(timeFormat(totalTime));
+  window.clearInterval(interval);
+  window.clearInterval(interval2);
+  interval = 0;
+  interval2 = 0;
+  init();
+};
+
 ////////
 
 init();
 
 ///////
 
-$('#timer').on('change', 'input', function () {
+$timer.on('change', 'input', function () {
   var id = $(this).attr('id').replace('i', '');
   tasks[id].textMessage = $(this).val();
 });
 
-$('#add').on('click', function () {
+$add.on('click', function () {
   addTask();
 });
 
-$('#timer').on('submit', 'form', function (e) {
+$timer.on('submit', 'form', function (e) {
   e.preventDefault();
   uiAddItem(this);
   $(this).find('input').blur();
+});
+
+$reset.on('click', function () {
+  reset();
 });
 
 window.addEventListener('beforeunload', function (e) {
@@ -231,4 +253,4 @@ $(document).on('keyup', function (e) {
   }
 });
 
-})();
+})(jQuery);
