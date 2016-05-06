@@ -75,25 +75,59 @@ button {
   }
 
   &:before{
+    position: absolute;
+    top: 8px;
+    left: 13px;
     content: '';
     display: inline-block;
-    margin-right: -21px;
-    margin-bottom: -6px;
     border-radius: 100%;
-    border: 2px solid #ccd5d9;
+    border: 1px solid #ccd5d9;
     height: 22px;
     width: 22px;
   }
 
   &:after{
     vertical-align: middle;
-    margin: 0 0 0 2em;
+    margin: 0 0 0 1.3em;
     content: 'add task';
-    letter-spacing: .3rem;
+    letter-spacing: .1rem;
     text-transform: uppercase;
     font-size: .8rem;
-    line-height: 2rem;
+    line-height: 40px;
     display: inline-block;
+  }
+
+  &.reset{
+    height: 40px;
+    line-height: 30px;
+    font-size: 1em;
+    margin: 0;
+    padding: 0 10px 0 10px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: auto;
+    z-index: 10;
+    &:before{
+      display: none;
+    }
+    &:after{
+      margin: 0;
+      content: 'reset';
+    }
+  }
+
+  &.add{
+    height: 40px;
+    line-height: 30px;
+    font-size: 1em;
+    margin: 0;
+    padding: 0 10px 0 20px;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    width: auto;
+    z-index: 10;
   }
 
 }
@@ -106,8 +140,6 @@ button {
   border-radius: 3px;
   margin-right: 120px;
   overflow: hidden;
-
-
 
   button {
     border-radius: 0;
